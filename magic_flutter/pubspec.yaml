@@ -1,0 +1,28 @@
+name: magic_flutter
+description: A new Flutter plugin for Magic SDK
+version: 0.0.1
+author:
+homepage:
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+  flutter: ">=1.20.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  magic_platform_interface:
+    path: ../magic_platform_interface
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: link.magic.magic_flutter
+        pluginClass: MagicFlutterPlugin
+      ios:
+        pluginClass: MagicFlutterPlugin
