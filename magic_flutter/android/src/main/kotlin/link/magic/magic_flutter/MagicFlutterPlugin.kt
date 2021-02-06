@@ -93,15 +93,13 @@ class MagicFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
             completableFuture.whenComplete { response: UpdateEmailResponse?, error: Throwable? ->
                 when {
                     response != null && !response.hasError() -> {
-                        val responseMap = mapOf("result" to response.result)
-                        sendResult(responseMap, result)
+                        sendResult<Boolean>(response.result, result)
                     }
                     error != null -> {
                         sendError(updateEmailErrorMessage, error.message, result)
                     }
                     else -> {
-                        val responseMap = mapOf("result" to false)
-                        sendResult(responseMap, result)
+                        sendResult(false, result)
                     }
                 }
             }
@@ -119,8 +117,7 @@ class MagicFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
                     sendError(logOutErrorMessage, error.message, result)
 
                 if (response != null && response.result) {
-                    val responseMap = mapOf("result" to response.result)
-                    sendResult(responseMap, result)
+                    sendResult<Boolean>(response.result, result)
                 }
             }
 
@@ -137,11 +134,9 @@ class MagicFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
                     sendError(isLoggedInErrorMessage, error.message, result)
 
                 if (response != null && response.result) {
-                    val responseMap = mapOf("result" to response.result)
-                    sendResult(responseMap, result)
+                    sendResult<Boolean>(response.result, result)
                 } else {
-                    val responseMap = mapOf("result" to false)
-                    sendResult(responseMap, result)
+                    sendResult(false, result)
                 }
             }
         } else {
@@ -160,7 +155,7 @@ class MagicFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
 
                 if (response != null && !response.hasError()) {
                     val responseMap = mapOf("id" to response.id, "result" to response.result, "jsonRpc" to response.jsonrpc, "rawResponse" to response.rawResponse)
-                    sendResult(responseMap, result)
+                    sendResult<Map<String, Any>>(responseMap, result)
                 } else {
                     sendError(loginErrorMessage, commonErrorDetail, result)
                 }
@@ -174,9 +169,9 @@ class MagicFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
         result.error(errorCode, "Magic SDK not initialized. Make sure, you have called Magic.initializeMagic", null)
     }
 
-    private fun sendResult(responseMap: Map<String, Any?>, result: Result) {
+    private fun <T>sendResult(response: T, result: Result) {
         Handler(Looper.getMainLooper()).post {
-            result.success(responseMap)
+            result.success(response)
         }
     }
 

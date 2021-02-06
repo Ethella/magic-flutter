@@ -4,9 +4,6 @@ import 'package:magic_platform_interface/model/did_token_model.dart';
 import 'package:magic_platform_interface/model/generate_id_token_model.dart';
 import 'package:magic_platform_interface/model/get_id_token_model.dart';
 import 'package:magic_platform_interface/model/get_metadata_response_model.dart';
-import 'package:magic_platform_interface/model/is_logged_in_model.dart';
-import 'package:magic_platform_interface/model/logout_response_model.dart';
-import 'package:magic_platform_interface/model/update_email_response_model.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 abstract class MagicPlatformInterface extends PlatformInterface {
@@ -33,7 +30,7 @@ abstract class MagicPlatformInterface extends PlatformInterface {
     throw UnimplementedError();
   }
 
-  Future<UpdateEmailResponse> updateEmail({@required String email}) async {
+  Future<bool> updateEmail({@required String email}) async {
     throw UnimplementedError();
   }
 
@@ -49,11 +46,11 @@ abstract class MagicPlatformInterface extends PlatformInterface {
     throw UnimplementedError();
   }
 
-  Future<IsLoggedInResponse> isLoggedIn() async {
+  Future<bool> isLoggedIn() async {
     throw UnimplementedError();
   }
 
-  Future<LogoutResponse> logout() async {
+  Future<bool> logout() async {
     throw UnimplementedError();
   }
 }
