@@ -35,8 +35,7 @@ class MagicMethodChannel extends MagicPlatformInterface {
 
   @override
   Future<DidToken> loginWithMagicLink({@required String email}) async {
-    final arguments = {"email": email};
-    final result = await _methodChannel.invokeMethod('loginWithMagicLink', arguments);
+    final result = await _methodChannel.invokeMethod('loginWithMagicLink', email);
     return DidToken.fromJson(Map<String, dynamic>.from(result));
   }
 
@@ -48,14 +47,12 @@ class MagicMethodChannel extends MagicPlatformInterface {
 
   @override
   Future<bool> updateEmail({@required String email}) async {
-    final map = {'email': email};
-    final result = await _methodChannel.invokeMethod('updateEmail', map);
+    final result = await _methodChannel.invokeMethod('updateEmail', email);
     return result;
   }
 
   @override
   Future<bool> initializeMagic({String publisherKey}) async {
-    final arguments = {'publisherKey': publisherKey};
-    return await _methodChannel.invokeMethod('initializeMagic', arguments);
+    return await _methodChannel.invokeMethod('initializeMagic', publisherKey);
   }
 }

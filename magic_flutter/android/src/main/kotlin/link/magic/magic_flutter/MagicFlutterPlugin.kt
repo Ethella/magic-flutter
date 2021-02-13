@@ -33,10 +33,6 @@ class MagicFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
     private val updateEmailErrorMessage: String = "Failed to update E-mail"
     private val fetchMetaDataErrorMessage: String = "Failed to fetch user meta-data"
 
-    // Keys
-    private val publisherKey: String = "publisherKey"
-    private val emailKey: String = "email"
-
     private lateinit var channel: MethodChannel
     private var activity: Activity? = null
     private var magicSDK: Magic? = null
@@ -60,7 +56,7 @@ class MagicFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
 
     private fun initializeMagicSDK(call: MethodCall, result: Result) {
         if (activity != null) {
-            magicSDK = Magic(activity as Activity, call.argument<String>(publisherKey) as String)
+            magicSDK = Magic(activity as Activity, call.arguments as String)
             result.success(true)
         } else {
             result.success(false)
@@ -88,7 +84,7 @@ class MagicFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
 
     private fun updateEmail(call: MethodCall, result: Result) {
         if (magicSDK != null) {
-            val completableFuture = magicSDK!!.user.updateEmail(UpdateEmailConfiguration(email = call.argument<String>(emailKey) as String))
+            val completableFuture = magicSDK!!.user.updateEmail(UpdateEmailConfiguration(email = call.arguments as String))
 
             completableFuture.whenComplete { response: UpdateEmailResponse?, error: Throwable? ->
                 when {
@@ -147,7 +143,7 @@ class MagicFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
 
     private fun loginWithMagicLink(call: MethodCall, result: Result) {
         if (magicSDK != null) {
-            val completableFuture = magicSDK!!.auth.loginWithMagicLink(LoginWithMagicLinkConfiguration(email = call.argument<String>("email") as String))
+            val completableFuture = magicSDK!!.auth.loginWithMagicLink(LoginWithMagicLinkConfiguration(email = call.arguments as String))
 
             completableFuture.whenComplete { response: DIDToken?, error: Throwable? ->
                 if (error != null)
