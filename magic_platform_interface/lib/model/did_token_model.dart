@@ -4,12 +4,17 @@ class DidToken {
   final String jsonRpc;
   final String rawResponse;
 
-  DidToken({this.id, this.result, this.jsonRpc, this.rawResponse});
+  DidToken({
+    required this.id,
+    required this.result,
+    required this.jsonRpc,
+    required this.rawResponse,
+  });
 
   factory DidToken.fromJson(Map<String, dynamic> response) => DidToken(
-        id: response['id'],
-        result: response['result'],
-        jsonRpc: response['jsonRpc'],
-        rawResponse: response['rawResponse'],
+        id: response['id'] ?? '',
+        result: response['result'] ?? '',
+        jsonRpc: response['jsonRpc'] ?? '',
+        rawResponse: response['rawResponse']?? '',
       );
 }

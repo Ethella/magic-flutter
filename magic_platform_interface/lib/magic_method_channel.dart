@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:magic_platform_interface/magic_platform_interface.dart';
 import 'package:magic_platform_interface/model/did_token_model.dart';
@@ -23,36 +22,41 @@ class MagicMethodChannel extends MagicPlatformInterface {
 
   @override
   Future<GetMetaDataResponse> getMetaData() async {
-    final result = await _methodChannel.invokeMethod('getMetaData');
-    return GetMetaDataResponse.fromJson(Map<String, dynamic>.from(result));
+    return GetMetaDataResponse.fromJson(
+        await _methodChannel.invokeMapMethod<String, dynamic>('getMetaData') ??
+            <String, dynamic>{});
   }
 
   @override
   Future<bool> isLoggedIn() async {
-    final result = await _methodChannel.invokeMethod("isLoggedIn");
+    final result = await _methodChannel.invokeMethod("isLoggedIn") as bool;
     return result;
   }
 
   @override
-  Future<DidToken> loginWithMagicLink({@required String email}) async {
-    final result = await _methodChannel.invokeMethod('loginWithMagicLink', email);
-    return DidToken.fromJson(Map<String, dynamic>.from(result));
+  Future<DidToken> loginWithMagicLink({required String email}) async {
+    final result = await _methodChannel.invokeMapMethod<String, dynamic>(
+            'loginWithMagicLink', email) ??
+        <String, dynamic>{};
+    return DidToken.fromJson(result);
   }
 
   @override
   Future<bool> logout() async {
-    final result = await _methodChannel.invokeMethod('logout');
+    final result = await _methodChannel.invokeMethod('logout') as bool;
     return result;
   }
 
   @override
-  Future<bool> updateEmail({@required String email}) async {
-    final result = await _methodChannel.invokeMethod('updateEmail', email);
+  Future<bool> updateEmail({required String email}) async {
+    final result =
+        await _methodChannel.invokeMethod('updateEmail', email) as bool;
     return result;
   }
 
   @override
-  Future<bool> initializeMagic({String publisherKey}) async {
-    return await _methodChannel.invokeMethod('initializeMagic', publisherKey);
+  Future<bool> initializeMagic({required String publisherKey}) async {
+    return await _methodChannel.invokeMethod('initializeMagic', publisherKey)
+        as bool;
   }
 }

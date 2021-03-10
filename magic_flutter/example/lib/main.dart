@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
 
 class InitializeApp extends StatelessWidget {
   // TODO: Replace with your publisher key
-  final publisherKey = "publisherKey";
+  final publisherKey = "";
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,9 @@ class InitializeApp extends StatelessWidget {
         future: Magic.initializeMagic(publisherKey: publisherKey),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
-            if (snapshot.data) return LoginPage();
+            if (snapshot.hasData) {
+              return LoginPage();
+            }
             return Container(
               alignment: Alignment.center,
               child: Text("Something went wrong. Failed to initialize Magic"),
@@ -63,7 +65,7 @@ class LoginPage extends StatelessWidget {
                 hintText: "Enter your email id",
               ),
               validator: (value) {
-                if (!value.isValidEmail) return "Enter a valid email";
+                if (!value!.isValidEmail) return "Enter a valid email";
                 return null;
               },
             ),
@@ -79,7 +81,7 @@ class LoginPage extends StatelessWidget {
   }
 
   Future<void> login(BuildContext context) async {
-    if (formKey.currentState.validate()) {
+    if (formKey.currentState!.validate()) {
       try {
         await Magic.loginWithMagicLink(email: emailController.text);
 
@@ -91,7 +93,7 @@ class LoginPage extends StatelessWidget {
       } catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text((e as PlatformException).message),
+            content: Text((e as PlatformException).message!),
           ),
         );
       }
@@ -106,11 +108,11 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text("Home Page"),
       ),
-      body: FutureBuilder(
+      body: FutureBuilder<GetMetaDataResponse>(
         future: Magic.getMetaData(),
         builder: (context, snapshot) {
-          if(snapshot.connectionState == ConnectionState.done) {
-            if(snapshot.hasError)
+          if (snapshot.connectionState == ConnectionState.done) {
+            if (snapshot.hasError)
               return Container(
                 alignment: Alignment.center,
                 child: Text('Something went wrong while fetching data'),
@@ -123,12 +125,12 @@ class HomePage extends StatelessWidget {
                 children: [
                   ListTile(
                     title: Text('Email address'),
-                    subtitle: Text(snapshot.data.email),
+                    subtitle: Text(snapshot.data!.email),
                   ),
                   ListTile(
                     title: Text('Public address'),
-                    subtitle: Text(snapshot.data.publicAddress),
-                  )
+                    subtitle: Text(snapshot.data!.publicAddress),
+                  ),
                 ],
               ),
             );

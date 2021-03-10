@@ -22,15 +22,15 @@ abstract class MagicPlatformInterface extends PlatformInterface {
     _instance = instance;
   }
 
-  Future<bool> initializeMagic({@required String publisherKey}) async {
+  Future<bool> initializeMagic({required String publisherKey}) async {
     throw UnimplementedError();
   }
 
-  Future<DidToken> loginWithMagicLink({@required String email}) async {
+  Future<DidToken> loginWithMagicLink({required String email}) async {
     throw UnimplementedError();
   }
 
-  Future<bool> updateEmail({@required String email}) async {
+  Future<bool> updateEmail({required String email}) async {
     throw UnimplementedError();
   }
 
