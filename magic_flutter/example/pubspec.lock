@@ -67,17 +67,17 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  magic:
+    dependency: transitive
+    description:
+      path: "../../magic"
+      relative: true
+    source: path
+    version: "0.0.1"
   magic_flutter:
     dependency: "direct main"
     description:
       path: ".."
-      relative: true
-    source: path
-    version: "0.0.1"
-  magic_platform_interface:
-    dependency: transitive
-    description:
-      path: "../../magic_platform_interface"
       relative: true
     source: path
     version: "0.0.1"

@@ -11,8 +11,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  magic_platform_interface:
-    path: ../magic_platform_interface
+  magic:
+    path: ../magic
 
 dev_dependencies:
   flutter_test:
@@ -22,7 +22,7 @@ flutter:
   plugin:
     platforms:
       android:
-        package: link.magic.magic_flutter
+        package: link.magic.flutter
         pluginClass: MagicFlutterPlugin
       ios:
         pluginClass: MagicFlutterPlugin

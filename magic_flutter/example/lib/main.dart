@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
 
 class InitializeApp extends StatelessWidget {
   // TODO: Replace with your publisher key
-  final publisherKey = "";
+  final publisherKey = "pk_live_F6875E92A3144E89";
 
   @override
   Widget build(BuildContext context) {
@@ -31,9 +31,9 @@ class InitializeApp extends StatelessWidget {
         future: Magic.initializeMagic(publisherKey: publisherKey),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
-            if (snapshot.hasData) {
+            // if (snapshot.hasData) {
               return LoginPage();
-            }
+            // }
             return Container(
               alignment: Alignment.center,
               child: Text("Something went wrong. Failed to initialize Magic"),
@@ -60,7 +60,11 @@ class LoginPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextFormField(
-              controller: emailController,
+              controller:   TextEditingController.fromValue(
+                TextEditingValue(
+                  text: "jerry@magic.link"
+                )
+              ),
               decoration: InputDecoration(
                 hintText: "Enter your email id",
               ),

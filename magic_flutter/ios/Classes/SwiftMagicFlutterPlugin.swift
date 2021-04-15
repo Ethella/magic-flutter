@@ -3,7 +3,7 @@ import UIKit
 
 public class SwiftMagicFlutterPlugin: NSObject, FlutterPlugin {
   public static func register(with registrar: FlutterPluginRegistrar) {
-    let channel = FlutterMethodChannel(name: "magic_flutter", binaryMessenger: registrar.messenger())
+    let channel = FlutterMethodChannel(name: "link.magic.flutter/magic", binaryMessenger: registrar.messenger())
     let instance = SwiftMagicFlutterPlugin()
     registrar.addMethodCallDelegate(instance, channel: channel)
   }

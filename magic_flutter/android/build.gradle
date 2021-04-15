@@ -1,4 +1,4 @@
-group 'link.magic.magic_flutter'
+group 'link.magic.flutter'
 version '1.0-SNAPSHOT'
 
 buildscript {

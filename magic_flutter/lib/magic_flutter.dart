@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:magic_platform_interface/index.dart';
-export 'package:magic_platform_interface/index.dart';
+import 'package:magic/index.dart';
+export 'package:magic/index.dart';
 
 /// The entry point for accessing Magic SDK.
 class Magic {

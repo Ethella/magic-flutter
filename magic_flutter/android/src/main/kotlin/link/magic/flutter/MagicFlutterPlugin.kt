@@ -1,4 +1,4 @@
-package link.magic.magic_flutter
+package link.magic.flutter
 
 import android.app.Activity
 import android.os.Handler
@@ -38,7 +38,7 @@ class MagicFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
     private var magicSDK: Magic? = null
 
     override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
-        channel = MethodChannel(flutterPluginBinding.binaryMessenger, "magic")
+        channel = MethodChannel(flutterPluginBinding.binaryMessenger, "link.magic.flutter/magic")
         channel.setMethodCallHandler(this)
     }
 

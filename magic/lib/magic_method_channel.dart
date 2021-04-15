@@ -1,9 +1,9 @@
 import 'package:flutter/services.dart';
-import 'package:magic_platform_interface/magic_platform_interface.dart';
-import 'package:magic_platform_interface/model/did_token_model.dart';
-import 'package:magic_platform_interface/model/generate_id_token_model.dart';
-import 'package:magic_platform_interface/model/get_id_token_model.dart';
-import 'package:magic_platform_interface/model/get_metadata_response_model.dart';
+import 'package:magic/magic_platform_interface.dart';
+import 'package:magic/model/did_token_model.dart';
+import 'package:magic/model/generate_id_token_model.dart';
+import 'package:magic/model/get_id_token_model.dart';
+import 'package:magic/model/get_metadata_response_model.dart';
 
 class MagicMethodChannel extends MagicPlatformInterface {
   static const MethodChannel _methodChannel = MethodChannel('magic');

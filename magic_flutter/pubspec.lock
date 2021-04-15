@@ -60,10 +60,10 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  magic_platform_interface:
+  magic:
     dependency: "direct main"
     description:
-      path: "../magic_platform_interface"
+      path: "../magic"
       relative: true
     source: path
     version: "0.0.1"

@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
-import 'package:magic_platform_interface/magic_method_channel.dart';
-import 'package:magic_platform_interface/model/did_token_model.dart';
-import 'package:magic_platform_interface/model/generate_id_token_model.dart';
-import 'package:magic_platform_interface/model/get_id_token_model.dart';
-import 'package:magic_platform_interface/model/get_metadata_response_model.dart';
+import 'package:magic/magic_method_channel.dart';
+import 'package:magic/model/did_token_model.dart';
+import 'package:magic/model/generate_id_token_model.dart';
+import 'package:magic/model/get_id_token_model.dart';
+import 'package:magic/model/get_metadata_response_model.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 abstract class MagicPlatformInterface extends PlatformInterface {
